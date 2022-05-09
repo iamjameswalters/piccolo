@@ -1,11 +1,10 @@
-<center>
+<p align="center">
+  <img src="piccolo.png" alt="Piccolo icon" />
+</p>
 
-![Piccolo icon](piccolo.png)
+<h1 align="center">Piccolo</h1>
+<p align="center">A <a href="https://github.com/getpelican/pelican">Pelican</a> theme based on <a href="https://github.com/picocss/pico">Pico.css</a></p>
 
-# Piccolo
-A Pelican theme based on Pico.css
-</center>
+### Icon credit
 
-
-
-[Piccolo icon by Pomicon at Flaticon](https://www.flaticon.com/free-icons/piccolo)
+* [Piccolo icon by Pomicon at Flaticon](https://www.flaticon.com/free-icons/piccolo)
