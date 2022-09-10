@@ -1,18 +1,21 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<section id="content">
-  {% block content_title %}
-  <h2>All articles</h2>
-  {% endblock %}
   {% for article in articles_page.object_list %}
   <article>
     <header>
+    <hgroup>
       <h2><a href="{{ SITEURL }}/{{ article.url }}" rel="bookmark"
           title="Permalink to {{ article.title|striptags }}">{{ article.title }}</a></h2>
-    </header>
+      <h3>By
+        {% for author in article.authors %}
+        <a href="{{ SITEURL }}/{{ author.url }}">{{ author }}</a>,
+        {% endfor %}
+        <time class="published" datetime="{{ article.date.isoformat() }}"> {{ article.locale_date }} </time></h3>
+    </hgroup>
+  </header>
     {{ article.summary }}
-    <footer>
+    <!-- <footer>
       <time class="published" datetime="{{ article.date.isoformat() }}"> {{ article.locale_date }} </time>
       <address>By
         {% for author in article.authors %}
@@ -20,7 +23,7 @@
         {% endfor %}
       </address>
     </footer>
-    
+     -->
   </article>
   {% endfor %}
   
@@ -29,5 +32,5 @@
   {% include 'pagination.html' %}
   {% endif %}
 
-</section>
+
 {% endblock %}

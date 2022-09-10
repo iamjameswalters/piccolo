@@ -7,8 +7,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="generator" content="Pelican" />
   <title>{% block title %}{{ SITENAME }}{% endblock %}</title>
-  <link rel="stylesheet" type="text/css" href="{{ SITEURL }}/theme/css/pico.classless.min.css" />
-  <link rel="stylesheet" type="text/css" href="../static/css/pico.classless.min.css" />
+  <link rel="stylesheet" type="text/css" href="{{ SITEURL }}./theme/css/pico.min.css" />
+  <link rel="stylesheet" type="text/css" href="../static/css/pico.min.css" />
   {% if FEED_ALL_ATOM %}
   <link
     href="{{ FEED_DOMAIN }}/{% if FEED_ALL_ATOM_URL %}{{ FEED_ALL_ATOM_URL }}{% else %}{{ FEED_ALL_ATOM }}{% endif %}"
@@ -50,10 +50,10 @@
 </head>
 
 <body>
-  <header>
+  <header class="container">
   <nav>
     <ul>
-      <li><a href="{{ SITEURL }}"><strong>{{ SITENAME }}</strong>{% if SITESUBTITLE %} {{ SITESUBTITLE }}{% endif %}</a></li>
+      <li><a href="{{ SITEURL }}"><strong>All Posts</strong></a></li>
     </ul>
     <ul>
       {% for title, link in MENUITEMS %}
@@ -61,26 +61,66 @@
       {% endfor %}
       {% if DISPLAY_PAGES_ON_MENU %}
       {% for p in pages %}
-      <li{% if p == page %} class="active" {% endif %}><a href="{{ SITEURL }}/{{ p.url }}">{{ p.title }}</a></li>
+      <li>{% if p == page %}<strong>{% endif %}<a href="{{ SITEURL }}/{{ p.url }}">{{ p.title }}</a>{% if p == page %}</strong>{% endif %}</li>
         {% endfor %}
         {% endif %}
         {% if DISPLAY_CATEGORIES_ON_MENU %}
         {% for cat, null in categories %}
-        <li{% if cat == category %} class="active" {% endif %}><a href="{{ SITEURL }}/{{ cat.url }}">{{ cat }}</a></li>
+        <li>{% if cat == category %}<strong>{% endif %}<a href="{{ SITEURL }}/{{ cat.url }}">{{ cat }}</a>{% if cat == category %}</strong>{% endif %}</li>
           {% endfor %}
           {% endif %}
     </ul>
   </nav>
   </header>
-  <main>
+  <main style="padding-bottom: 0;padding-top: 0;" class="container">
+    {% block content_title %}
+  <hgroup>
+  <h1>{{ SITENAME }}</h1>
+  {% if SITESUBTITLE %}
+  <h2>{{ SITESUBTITLE }}</h2>
+  {% endif %}
+  </hgroup>
+  {% endblock %}
     {% block content %}
     {% endblock %}
   </main>
-  <footer>
-    <hr />
-    <address id="about">
-      Built using the <a href="https://github.com/iamjameswalters/piccolo">Piccolo</a> theme, based on <a href="https://picocss.com/">Pico.css</a>.
-    </address><!-- /#about -->
+  <footer style="display: grid; padding-top: 0;" class="container">
+    {% if SOCIAL %}
+    <aside style="grid-row: 1;">
+    <nav>
+      <ul>
+        <li><strong>Social:</strong></li>
+      </ul>
+      <ul>
+      {% for name, link in SOCIAL %}
+      <li><a href="{{ link }}">{{ name }}</a></li>
+      {% endfor %}
+      </ul>
+    </nav>
+    </aside>
+    {% endif %}
+    {% if LINKS %}
+    <aside style="grid-row: 1;">
+    <nav>
+      <ul>
+        <li><strong>Links:</strong></li>
+      </ul>
+      <ul>
+      {% for name, link in LINKS %}
+      <li><a href="{{ link }}">{{ name }}</a></li>
+      {% endfor %}
+      </ul>
+    </nav>
+    </aside>
+    {% endif %}
+    <div style="grid-row: 1; display: flex; align-items: center; justify-content: end;">
+      <img src="https://www.gravatar.com/avatar/{{ GRAVATAR_HASH }}?s=200&d=https%3A%2F%2Fwww.gravatar.com%2Favatar%2F205e460b479e2e5b48aec07710c08d50%3Fs%3D200" style="border-radius: 50%;">
+    </div>
+    <div style="grid-row: 2; grid-column: span 3;">
+      <hr />
+      <p style="padding-top: 0.5em;">
+      Built using the <a href="https://github.com/iamjameswalters/piccolo">Piccolo</a> theme, based on <a href="https://picocss.com/">Pico.css</a>.</p>
+    </div>
   </footer>
 </body>
 
