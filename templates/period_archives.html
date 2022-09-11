@@ -4,12 +4,15 @@
 {% block title %}{{ SITENAME }} - {{ period | reverse | join(' ') }} archives{% endblock %}
 
 {% block content %}
-<h1>Archives for {{ period | reverse | join(' ') }}</h1>
-
-<dl>
+<article>
+    <header>
+<h3 style="margin-bottom: 0;">Archives for {{ period | reverse | join(' ') }}</h3>
+</header>
 {% for article in dates %}
-    <dt>{{ article.locale_date }}</dt>
-    <dd><a href="{{ SITEURL }}/{{ article.url }}">{{ article.title }}</a></dd>
+    {{ article.locale_date }}
+    <ul>
+        <li><a href="{{ SITEURL }}/{{ article.url }}">{{ article.title }}</a></li>
+    </ul>
 {% endfor %}
-</dl>
+</article>
 {% endblock %}
