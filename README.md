@@ -29,6 +29,9 @@ shows:
 
 ![Gravatar example](screenshot5.png)
 
+## Customizing Colors
+
+Pico's colors can be easily customized. See [Pico's documentation](https://picocss.com/docs/customization.html) for more info.
 ## Installation and Usage
 
 1. Clone the repository, or download the theme as a zip.
